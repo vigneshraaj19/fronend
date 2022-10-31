@@ -15,9 +15,16 @@
     width:100%;
     color: antiquewhite;
     padding: 20px;
-    font-size: 25px;  
+    font-size: 22px; 
+    font-family: Tahoma; 
   }
- 
+ .textbox{
+    width: 90%;
+    padding:10px 10px;
+ }
+ .textboxs{
+    padding: 10px;
+ }
 
 .popup-inner
 {
@@ -27,11 +34,39 @@ height: 100%;
 width:100%;
 max-width:540px;
 background-color: #fff;
+
+
 }
 
-.popup-inner .close-btm{
+.close-btm {
+   margin:20px;
+   border: none;
+   padding: 15px 20px;
+   background-color: rgb(5, 156, 63);
+   color: white;
+   cursor: pointer;
+  transition: 0.3s;
+   border-radius: 20px;
+   font-family: Tahoma;
+
+}
+.cancel-btm {
+    margin:20px;
+    border: none;
+    padding: 15px 20px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+   transition: 0.3s;
+    border-radius: 20px;
+    font-family: Tahoma;
+ 
+ }
+.footer{
     position: absolute;
-  
+    right: 1;
+    bottom:   0;
+    
 }
 
 
