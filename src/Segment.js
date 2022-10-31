@@ -6,7 +6,7 @@ import { useState } from 'react'
 function Segment() {
 
     const [dataoptions,setdataoptions]=useState(options);
-    const[ showdropdown,setshowdropdown]=useState(true);
+    const[ showdropdown,setshowdropdown]=useState(false);
     const [selectedoption, setselectedoption] = useState([]);
     const [Unselectedoption, setUnselectedoption] = useState([]);
     const [data,setdata] = useState([]);
@@ -53,7 +53,7 @@ function Segment() {
       <select  onChange={onselect}  >
       <option value="">Add schema to segment</option>
 
-        {dataoptions.map((options) => (
+        {Unselectedoption.map((options) => (
           <option value={options.Value} disabled={options.isSelected}>{options.Label}</option>
         ))}
 
