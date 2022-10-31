@@ -4,54 +4,64 @@ import { options } from "./Data.js";
 import { useState } from 'react'
 
 function Segment() {
-    const [dataoptions,setdataoptions]=useState(options)
-    // const [selectedoption,setselectedoption]=useState([]);
-    const[ showdropdown,setshowdropdown]=useState(false);
-    const [current, setCurrent] = useState(options[0].Value)
 
-    var selectedoption=[]
+    const [dataoptions,setdataoptions]=useState(options);
+    const[ showdropdown,setshowdropdown]=useState(true);
+    const [selectedoption, setselectedoption] = useState([]);
+    const [Unselectedoption, setUnselectedoption] = useState([]);
+    const [data,setdata] = useState([]);
 
-    var onselect=(e)=>{
 
-        selectedoption.push(dataoptions[e.target.selectedIndex])
-        // let options=dataoptions;
-        // let optionData=[];
-        // dataoptions[e.target.selectedIndex].map((item)=>{
-        //     optionData=[
-        //         ...optionData,{
-        //             label:item.Label,
-        //             value:item.Value,
-        //             isSelected:item.isSelected,
-        //         }
-        //     ]
-        // })
-        // options=optionData;
-        // setselectedoption(options);
-        console.log("INselectedoption",selectedoption)
+    const clearState = () => {
+       
+        setdata([])
     }
-    console.log("OUTselectedoption",selectedoption)
+    var onselect=(e)=>{
+        e.preventDefault();    
+        setdata(dataoptions[e.target.selectedIndex])  
+    }
+
+    // console.log("selectedoption",selectedoption)
 
    const addselection=()=>{
-
+    if(data!=[])
+    {
+    setselectedoption((selectedoption) => [
+        ...selectedoption,
+        data,
+      ]);
+    }else{
+      clearState()
+    }
+      var result=dataoptions.filter(({ Value: id1 }) => !selectedoption.some(({ Value: id2 }) => id2 === id1));
+      setUnselectedoption(result);
+     
    }
+   console.log("unselectedoption",Unselectedoption)
+   console.log("selectedoption",selectedoption)
+  
   return (
-    <div className="dropdown">
+   
+    <div  className="dropdown">
     
      {
         showdropdown && selectedoption &&  <div className="blue-box">
        
         </div>
      }
-      <select value={current} onChange={onselect}>
-
+    
+      <select  onChange={onselect}  >
+      <option value="">Add schema to segment</option>
 
         {dataoptions.map((options) => (
           <option value={options.Value} disabled={options.isSelected}>{options.Label}</option>
         ))}
 
       </select>
-      <button className="button-style">+ Add new schema</button>
+      <button type="submit" onClick={addselection} className="button-style">+ Add new schema</button>
+      
     </div>
+   
   );
 }
 

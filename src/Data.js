@@ -1,10 +1,4 @@
 export const options = [
-    {
-        id:0,
-        Label: "Add schema to segment",
-        Value: "",
-        isSelected:true,
-      },
   {
     id:1,
     Label: "First Name",
