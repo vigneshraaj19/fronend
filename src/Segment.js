@@ -11,7 +11,6 @@ function Segment(props) {
   const [value, setValue] = useState("");
   const [data, setdata] = useState([]);
   const [segment, setSegment] = useState("");
-  const [form, setform] = useState({});
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -20,13 +19,19 @@ function Segment(props) {
 
   const handleSubmit = () => {
     if (segment.length != 0 && selectedoption.length != 0) {
-      const nextFormState = {
-        Segment_name: segment,
-        Schema: [selectedoption],
+      const flitervalue = selectedoption.map(({ Label, Value }) => ({
+        [Label]: Value,
+      }));
+
+      const datas = {
+        segment_name: segment,
+        schema: flitervalue,
       };
-      setform(nextFormState);
-      console.log(segment, selectedoption);
-      console.log(form);
+
+      fetch(`https://webhook.site/cb7eb316-4875-428b-97a5-4f8ea50d031b`, {
+        method: "POST",
+        body: JSON.stringify(datas),
+      });
     } else {
       alert("Enter the segment name and select the option");
     }
@@ -102,11 +107,7 @@ function Segment(props) {
                     <select onChange={selectvalue} value={options.Value}>
                       <option value={options.Value}>{options.Label}</option>
                       {Unselectedoption.map((options, index) => (
-                        <option
-                          key={index}
-                          value={options.Value}
-                          
-                        >
+                        <option key={index} value={options.Value}>
                           {options.Label}
                         </option>
                       ))}
@@ -118,11 +119,7 @@ function Segment(props) {
             <select className="select" onChange={onselect} value={value}>
               <option value="">Add schema to segment</option>
               {Unselectedoption.map((options, index) => (
-                <option
-                  key={index}
-                  value={options.Value}
-                  
-                >
+                <option key={index} value={options.Value}>
                   {options.Label}
                 </option>
               ))}
