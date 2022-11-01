@@ -1,6 +1,6 @@
 import "./App.css";
-import Popup from "./Popup";
 import { useState } from "react";
+import Segment from "./Segment";
 
 function App() {
   const [buttonPopup, setButtonPopup] = useState(false);
@@ -19,7 +19,7 @@ function App() {
           Save Segment
         </button>
         {
-          buttonPopup?<Popup trigger={buttonPopup} setTrigger={() => openmodel()} />:null
+          buttonPopup?<Segment trigger={buttonPopup} setTrigger={() => openmodel()} />:null
         }
       </div>
     </div>
