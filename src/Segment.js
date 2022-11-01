@@ -22,7 +22,7 @@ function Segment(props) {
     if (segment.length != 0 && selectedoption.length != 0) {
       const nextFormState = {
         Segment_name: segment,
-        Schema: [],
+        Schema: [selectedoption],
       };
       setform(nextFormState);
       console.log(segment, selectedoption);
@@ -105,7 +105,7 @@ function Segment(props) {
                         <option
                           key={index}
                           value={options.Value}
-                          disabled={options.isSelected}
+                          
                         >
                           {options.Label}
                         </option>
@@ -121,7 +121,7 @@ function Segment(props) {
                 <option
                   key={index}
                   value={options.Value}
-                  disabled={options.isSelected}
+                  
                 >
                   {options.Label}
                 </option>
